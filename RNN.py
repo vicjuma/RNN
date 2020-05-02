@@ -8,7 +8,6 @@ import torch.nn as nn
 import maximum_mean_descripancy
 
 from tool.imblearn.over_sampling import RandomOverSampler
-from RNN_Test import *
 from ParsingSource import *
 from Tools import *
 
