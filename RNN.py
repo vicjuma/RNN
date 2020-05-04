@@ -3,7 +3,7 @@ import datetime
 import itertools
 import torch.optim as optim
 import torch
-import model_RNN 
+from model_RNN import model_RNN
 import torch.nn as nn
 import maximum_mean_descripancy
 
@@ -210,7 +210,7 @@ for path in path_train_and_test:
             RNN_acc, RNN_auc, RNN_f1, RNN_mcc = [], [], [], []
             DPRNN_acc, DPRNN_auc, DPRNN_f1, DPRNN_mcc = [], [], [], []
             for l in range(LOOP_SIZE):
-                model = RNN.RNN(nn_params)
+                model = model_RNN(nn_params)
                 model.to(DEVICE)
 
                 # Train
@@ -230,7 +230,7 @@ for path in path_train_and_test:
                         batch_y = batch_y.float()
                         loss_c = criterion(y_score, batch_y)
                         with torch.no_grad():
-                            loss_mmd = MMD.mmd_loss(x_src_mmd, x_tar_mmd, mmd_params['MMD_GAMMA'])
+                            loss_mmd = maximum_mean_descripancy.mmd_loss(x_src_mmd, x_tar_mmd, mmd_params['MMD_GAMMA'])
 
                         # Loss
                         loss = loss_c + mmd_params['MMD_LAMBDA'] * loss_mmd

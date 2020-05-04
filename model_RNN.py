@@ -2,9 +2,9 @@ import torch.nn as nn
 import torch
 
 
-class RNN(nn.Module):
+class model_RNN(nn.Module):
     def __init__(self, params):
-        super(RNN, self).__init__()
+        super(model_RNN, self).__init__()
         self.embedding = nn.Embedding(params['DICT_SIZE'], params['EMBED_DIM'])
         self.conv = nn.Conv1d(in_channels=params['TOKEN_SIZE'],
                               out_channels=params['N_FILTER'],
